@@ -1,119 +1,53 @@
 ---
 const paths = [
-	{
-		id: 'audience-developers',
-		title: 'Developers',
-		blurb: 'APIs, SDKs, and a repo you can run locally or in CI.',
-	},
-	{
-		id: 'audience-operations',
-		title: 'Operations',
-		blurb: 'Analyst workflows, explainability, and integration reality.',
-	},
-	{
-		id: 'audience-leaders',
-		title: 'Leaders',
-		blurb: 'Control, consolidation, and compliance without vendor lock-in.',
-	},
-	{
-		id: 'audience-investors',
-		title: 'Investors',
-		blurb: 'Thesis, OSS wedge, and how to evaluate momentum.',
-	},
+	{ id: 'audience-developers', label: 'Developers' },
+	{ id: 'audience-operations', label: 'Operations' },
+	{ id: 'audience-leaders', label: 'Leaders' },
+	{ id: 'audience-investors', label: 'Investors' },
+	{ id: 'orchestration', label: 'Orchestration' },
+	{ id: 'why', label: 'Why Tarka' },
 ] as const;
 ---
 
-<section id="choose-role" class="choose" aria-labelledby="choose-title">
-	<h2 id="choose-title">Choose your path</h2>
-	<p class="choose-lede">
-		Tarka speaks to different stakeholders. Pick what matches you—we’ll highlight what matters before the shared
-		tour below.
-	</p>
-	<ul class="path-grid">
-		{
-			paths.map(({ id, title, blurb }) => (
-				<li>
-					<a class="path-card" href={`#${id}`}>
-						<span class="path-title">{title}</span>
-						<span class="path-blurb">{blurb}</span>
-						<span class="path-cta" aria-hidden="true">
-							View section →
-						</span>
-					</a>
-				</li>
-			))
-		}
-	</ul>
-</section>
+<nav id="choose-role" class="role-nav" aria-label="Jump to section by role">
+	{
+		paths.map(({ id, label }) => (
+			<a class="role-chip" href={`#${id}`}>
+				{label}
+			</a>
+		))
+	}
+</nav>
 
 <style>
-	.choose {
-		margin-bottom: 4rem;
+	.role-nav {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem 0.65rem;
+		margin: 0 0 3rem;
 		scroll-margin-top: 5rem;
 	}
 
-	.choose h2 {
-		font-size: clamp(1.35rem, 3vw, 1.65rem);
-		margin: 0 0 0.5rem;
-	}
-
-	.choose-lede {
-		margin: 0 0 1.5rem;
-		color: var(--text-muted);
-		max-width: 52ch;
-		font-size: 1rem;
-		line-height: 1.55;
-	}
-
-	.path-grid {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		display: grid;
-		gap: 1rem;
-		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-	}
-
-	.path-card {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-		padding: 1.15rem 1.25rem;
-		border-radius: var(--radius);
-		border: 1px solid var(--border);
-		background: var(--bg-elevated);
-		text-decoration: none;
-		color: inherit;
-		transition:
-			border-color 0.15s,
-			background 0.15s,
-			box-shadow 0.15s;
-	}
-
-	.path-card:hover {
-		border-color: rgba(56, 189, 248, 0.45);
-		background: rgba(18, 26, 46, 0.95);
-		box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.12);
-	}
-
-	.path-title {
-		font-weight: 700;
-		font-size: 1.05rem;
-		margin-bottom: 0.35rem;
-		color: var(--text);
-	}
-
-	.path-blurb {
-		font-size: 0.9rem;
-		color: var(--text-muted);
-		line-height: 1.45;
-		flex: 1;
-	}
-
-	.path-cta {
-		margin-top: 0.85rem;
-		font-size: 0.8rem;
+	.role-chip {
+		display: inline-block;
+		padding: 0.35rem 0.75rem;
+		border-radius: 999px;
+		font-size: 0.85rem;
 		font-weight: 600;
-		color: var(--accent);
+		color: var(--text-muted);
+		text-decoration: none;
+		border: 1px solid var(--border);
+		background: transparent;
+		transition:
+			color 0.15s,
+			border-color 0.15s,
+			background 0.15s;
+	}
+
+	.role-chip:hover {
+		color: var(--text);
+		border-color: rgba(56, 189, 248, 0.4);
+		background: rgba(18, 26, 46, 0.6);
 	}
 </style>

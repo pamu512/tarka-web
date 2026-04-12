@@ -33,16 +33,13 @@ const loomEmbed = loomUrl.includes('/embed/')
 				<p class="eyebrow">Open-source fraud platform</p>
 				<h1 id="hero-title">Prove every signal.</h1>
 				<p class="lede">
-					Tarka is modular fraud detection for teams that need real-time decisions, explainable outcomes, and
-					investigations—without vendor lock-in.
+					Modular fraud detection: real-time decisions, explainable outcomes, and investigations—without vendor
+					lock-in.
 				</p>
-				<p class="hero-hint">
-					<a href="#choose-role">Choose your path</a> (developer, operations, leader, or investor), or scroll for
-					the full story, demo, and install paths. Longer essays on fraud, risk, and engineering live on{' '}
-					<a href={mediumBlog} target="_blank" rel="noopener noreferrer">
-						Medium @tarka
-					</a>
-					.
+				<p class="hero-meta">
+					<a href="#choose-role">By role</a>
+					<span class="hero-dot" aria-hidden="true">·</span>
+					<a href={mediumBlog} target="_blank" rel="noopener noreferrer">Essays on Medium</a>
 				</p>
 				<div class="actions">
 					{
@@ -64,41 +61,15 @@ const loomEmbed = loomUrl.includes('/embed/')
 
 			<AudiencePathCards />
 
-			<section class="grid" aria-labelledby="pillars-heading">
-				<h2 id="pillars-heading" class="sr-only">What you get</h2>
-				<article>
-					<h3>Own the stack</h3>
-					<p>
-						Pick the modules you need—Decision API, cases, graph, ML, integrations—and run them where you
-						already operate.
-					</p>
-				</article>
-				<article>
-					<h3>Explainable by design</h3>
-					<p>
-						Every signal is a hypothesis; decisions surface inference context and evidence your analysts and
-						auditors can follow.
-					</p>
-				</article>
-				<article>
-					<h3>From analysts to automation</h3>
-					<p>
-						Case workflows and explainability for operators; APIs and SDKs when you need to embed scoring in
-						your own services.
-					</p>
-				</article>
-			</section>
-
 			<section id="orchestration" class="section orch" aria-labelledby="orch-heading">
-				<h2 id="orch-heading">Fraud orchestration &amp; investigation copilot</h2>
+				<h2 id="orch-heading">Orchestration &amp; investigation copilot</h2>
 				<p class="orch-lead">
-					<strong>Orchestration</strong> here means closing the loop: signals and events feed a <strong>decision
-					surface</strong>, outcomes land in <strong>cases and workflows</strong>, and integrations connect KYC,
-					sanctions, device, CRM, and other providers—so operators aren’t stitching ten consoles by hand.
+					Signals feed decisions; decisions land in cases; integrations connect your providers—one loop instead
+					of many consoles.
 				</p>
 				<p class="orch-lead">
-					On top of that loop, <strong>Saarthi</strong> is the <strong>investigation copilot</strong> story: LLM
-					tool-use to help analysts work cases faster—with boundaries that respect governance and reviewability.
+					<strong>Saarthi</strong> is the investigation copilot (LLM tool-use) for faster case work—with
+					reviewability in mind.
 				</p>
 				<div class="orch-split">
 					<div class="orch-card">
@@ -122,9 +93,8 @@ const loomEmbed = loomUrl.includes('/embed/')
 					</div>
 				</div>
 				<p class="orch-foot">
-					Tarka stays the hero for <strong>modular fraud detection</strong>; Saarthi names the{' '}
-					<strong>AI-assisted investigation</strong> lane so buyers don’t confuse “copilot” with the core decision
-					engine.
+					Tarka is the <strong>fraud platform</strong>; Saarthi names the <strong>copilot</strong> lane—separate
+					from the core decision engine.
 				</p>
 			</section>
 
@@ -540,16 +510,19 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 		margin: 0 0 1rem;
 	}
 
-	.hero-hint {
-		font-size: 0.95rem;
+	.hero-meta {
+		font-size: 0.88rem;
 		color: var(--text-muted);
 		margin: 0 0 1.5rem;
-		max-width: 48ch;
-		line-height: 1.5;
 	}
 
-	.hero-hint a {
+	.hero-meta a {
 		font-weight: 600;
+	}
+
+	.hero-dot {
+		margin: 0 0.35rem;
+		opacity: 0.55;
 	}
 
 	.actions {
@@ -593,32 +566,6 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 	.btn.ghost:hover {
 		border-color: var(--text-muted);
 		background: var(--bg-elevated);
-	}
-
-	.grid {
-		display: grid;
-		gap: 1.5rem;
-		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-		margin-bottom: 4rem;
-	}
-
-	.grid article {
-		padding: 1.25rem 1.35rem;
-		border-radius: var(--radius);
-		border: 1px solid var(--border);
-		background: var(--bg-elevated);
-	}
-
-	.grid h3 {
-		margin: 0 0 0.5rem;
-		font-size: 1.05rem;
-		font-weight: 600;
-	}
-
-	.grid p {
-		margin: 0;
-		font-size: 0.95rem;
-		color: var(--text-muted);
 	}
 
 	.orch {

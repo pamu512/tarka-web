@@ -1,9 +1,9 @@
 ---
+import TarkaLogoMark from './TarkaLogoMark.astro';
+
 const links = [
 	{ href: '#overview', label: 'Overview' },
-	{ href: '#choose-role', label: 'Your role' },
-	{ href: '#orchestration', label: 'Orchestration' },
-	{ href: '#why', label: 'Why Tarka' },
+	{ href: '#choose-role', label: 'By role' },
 	{ href: '#demo', label: 'Demo' },
 	{ href: '#get-started', label: 'Build' },
 ] as const;
@@ -13,8 +13,8 @@ const github = 'https://github.com/pamu512/tarka';
 
 <header class="header">
 	<div class="inner">
-		<a class="brand" href="#overview">
-			<img src="/tarka-logo-full.svg" alt="Tarka — Prove every signal." width="160" height="138" />
+		<a class="brand" href="#overview" aria-label="Tarka — home">
+			<TarkaLogoMark />
 		</a>
 		<nav class="nav" aria-label="Primary">
 			<ul>
@@ -59,13 +59,15 @@ const github = 'https://github.com/pamu512/tarka';
 	.brand {
 		display: flex;
 		align-items: center;
-		line-height: 0;
+		min-height: 2.5rem;
+		text-decoration: none;
+		color: inherit;
 	}
 
-	.brand img {
-		height: auto;
-		max-height: 52px;
-		width: auto;
+	.brand:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 4px;
+		border-radius: 6px;
 	}
 
 	.nav ul {
@@ -82,7 +84,7 @@ const github = 'https://github.com/pamu512/tarka';
 		color: var(--text-muted);
 		text-decoration: none;
 		font-weight: 500;
-		font-size: 0.95rem;
+		font-size: 0.9rem;
 	}
 
 	.nav a:hover {

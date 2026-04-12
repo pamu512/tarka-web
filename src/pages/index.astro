@@ -10,6 +10,9 @@ const repo = github;
 const sandboxGuide = `${repo}/blob/master/docs/docs/guides/sandbox-five-minute.md`;
 const codespaces = `https://github.com/codespaces/new?hide_repo_select=true&ref=master&repo=pamu512%2Ftarka`;
 const security = `${repo}/blob/master/SECURITY.md`;
+const saarthiPro = 'https://github.com/pamu512/Saarthi-pro';
+const saarthiCompare = `${repo}/blob/master/docs/docs/guides/saarthi-pro-vs-oss.md`;
+const investigationAgent = `${repo}/tree/master/services/investigation-agent`;
 const loomUrl =
 	import.meta.env.PUBLIC_LOOM_URL ?? 'https://www.loom.com/share/2bc3dce78042444fb3216ca076a16fbc';
 const loomEmbed = loomUrl.includes('/embed/')
@@ -81,6 +84,45 @@ const loomEmbed = loomUrl.includes('/embed/')
 				</article>
 			</section>
 
+			<section id="orchestration" class="section orch" aria-labelledby="orch-heading">
+				<h2 id="orch-heading">Fraud orchestration &amp; investigation copilot</h2>
+				<p class="orch-lead">
+					<strong>Orchestration</strong> here means closing the loop: signals and events feed a <strong>decision
+					surface</strong>, outcomes land in <strong>cases and workflows</strong>, and integrations connect KYC,
+					sanctions, device, CRM, and other providers—so operators aren’t stitching ten consoles by hand.
+				</p>
+				<p class="orch-lead">
+					On top of that loop, <strong>Saarthi</strong> is the <strong>investigation copilot</strong> story: LLM
+					tool-use to help analysts work cases faster—with boundaries that respect governance and reviewability.
+				</p>
+				<div class="orch-split">
+					<div class="orch-card">
+						<h3>Open source (in Tarka)</h3>
+						<p>
+							The OSS copilot ships in the main repo as{' '}
+							<a href={investigationAgent}>services/investigation-agent</a>—best when you want the full Tarka
+							stack, self-hosted ops, and code you can audit end-to-end.
+						</p>
+					</div>
+					<div class="orch-card orch-card-pro">
+						<h3>Saarthi Pro (commercial)</h3>
+						<p>
+							<a href={saarthiPro}>Saarthi Pro</a> is the standalone, procurement-friendly SKU when you need a
+							focused investigation copilot with commercial terms (e.g. SLAs, roadmap expectations) separate
+							from running the entire OSS platform yourself.
+						</p>
+						<p class="orch-fine">
+							<a href={saarthiCompare}>Saarthi Pro vs OSS summary</a> — buyer/PMO framing for which path fits.
+						</p>
+					</div>
+				</div>
+				<p class="orch-foot">
+					Tarka stays the hero for <strong>modular fraud detection</strong>; Saarthi names the{' '}
+					<strong>AI-assisted investigation</strong> lane so buyers don’t confuse “copilot” with the core decision
+					engine.
+				</p>
+			</section>
+
 			<section id="audience-developers" class="section audience audience-dev" tabindex="-1" aria-labelledby="aud-dev">
 				<h2 id="aud-dev">For developers</h2>
 				<p class="audience-lead">
@@ -99,6 +141,11 @@ const loomEmbed = loomUrl.includes('/embed/')
 					<li>
 						<strong>See the contract</strong> — OpenAPI and SDKs track the same payloads your UI and automation
 						use.
+					</li>
+					<li>
+						<strong>Wire the copilot where you want it</strong> — Investigation agent code lives under{' '}
+						<a href={investigationAgent}>services/investigation-agent</a>; product story for OSS vs{' '}
+						<a href={saarthiPro}>Saarthi Pro</a> is <a href="#orchestration">spelled out here</a>.
 					</li>
 				</ul>
 				<p class="audience-cta">
@@ -134,12 +181,20 @@ const loomEmbed = loomUrl.includes('/embed/')
 						one integration story (exact adapters depend on what you enable).
 					</li>
 					<li>
+						<strong>Copilot-assisted investigations</strong> — Saarthi (OSS in-repo or{' '}
+						<a href={saarthiPro}>Saarthi Pro</a> when procurement needs a commercial copilot SKU) supports analyst
+						work on cases; pair with explainable decisions so AI stays reviewable.
+					</li>
+					<li>
 						<strong>Own the operating reality</strong> — Self-hosted means <em>you</em> own change windows,
 						capacity, and runbooks—plan staffing accordingly.
 					</li>
 				</ul>
 				<p class="audience-cta">
-					<a class="btn primary" href="#demo">Watch the walkthrough</a>
+					<a class="btn primary" href="#orchestration">Orchestration &amp; copilot</a>
+					<a class="btn ghost" href="#demo">
+						Watch the walkthrough
+					</a>
 					<a class="btn ghost" href={security} target="_blank" rel="noopener noreferrer">
 						Security disclosure
 					</a>
@@ -211,6 +266,11 @@ const loomEmbed = loomUrl.includes('/embed/')
 						<strong>What to diligence</strong> — Public CI/security posture, release cadence, module depth, and
 						ecosystem hooks (commercial adjacencies can sit beside OSS without confusion if messaged cleanly).
 					</li>
+					<li>
+						<strong>Adjacent SKU</strong> —{' '}
+						<a href={saarthiPro}>Saarthi Pro</a> is the named commercial investigation copilot alongside OSS
+						Tarka; see <a href={saarthiCompare}>OSS vs Pro</a> for how the lines are drawn.
+					</li>
 				</ul>
 				<div class="audience-note">
 					<p>
@@ -222,6 +282,7 @@ const loomEmbed = loomUrl.includes('/embed/')
 					<a class="btn primary" href={github} target="_blank" rel="noopener noreferrer">
 						Review the repository
 					</a>
+					<a class="btn ghost" href="#orchestration">Orchestration &amp; copilot</a>
 					<a class="btn ghost" href="#get-started">See how teams adopt</a>
 				</p>
 			</section>
@@ -553,6 +614,80 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 		margin: 0;
 		font-size: 0.95rem;
 		color: var(--text-muted);
+	}
+
+	.orch {
+		margin-bottom: 4rem;
+		scroll-margin-top: 5rem;
+		padding: 1.5rem 1.5rem 1.65rem;
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		background: linear-gradient(145deg, rgba(18, 26, 46, 0.9), rgba(12, 18, 34, 0.95));
+	}
+
+	.orch h2 {
+		font-size: clamp(1.45rem, 3vw, 1.75rem);
+		margin: 0 0 1rem;
+	}
+
+	.orch-lead {
+		font-size: 1.02rem;
+		color: var(--text-muted);
+		margin: 0 0 1rem;
+		max-width: 62ch;
+		line-height: 1.55;
+	}
+
+	.orch-lead strong {
+		color: var(--text);
+	}
+
+	.orch-split {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		margin: 1.25rem 0 1rem;
+	}
+
+	.orch-card {
+		padding: 1.1rem 1.2rem;
+		border-radius: 10px;
+		border: 1px solid var(--border);
+		background: rgba(15, 23, 42, 0.55);
+	}
+
+	.orch-card h3 {
+		font-size: 1rem;
+		margin: 0 0 0.5rem;
+	}
+
+	.orch-card p {
+		margin: 0;
+		font-size: 0.92rem;
+		color: var(--text-muted);
+		line-height: 1.5;
+	}
+
+	.orch-card-pro {
+		border-color: rgba(52, 211, 153, 0.35);
+		background: rgba(6, 78, 59, 0.12);
+	}
+
+	.orch-fine {
+		margin-top: 0.65rem !important;
+		font-size: 0.88rem !important;
+	}
+
+	.orch-foot {
+		margin: 0;
+		font-size: 0.88rem;
+		color: var(--text-muted);
+		line-height: 1.5;
+		max-width: 62ch;
+	}
+
+	.orch-foot strong {
+		color: var(--text);
 	}
 
 	.section {

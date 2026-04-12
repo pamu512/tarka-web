@@ -1,9 +1,9 @@
 ---
 const links = [
-	{ href: '/', label: 'Home' },
-	{ href: '/why', label: 'Why Tarka' },
-	{ href: '/demo', label: 'Demo' },
-	{ href: '/get-started', label: 'Get started' },
+	{ href: '#overview', label: 'Overview' },
+	{ href: '#why', label: 'Why Tarka' },
+	{ href: '#demo', label: 'Demo' },
+	{ href: '#get-started', label: 'Get started' },
 ] as const;
 
 const github = 'https://github.com/pamu512/tarka';
@@ -11,7 +11,7 @@ const github = 'https://github.com/pamu512/tarka';
 
 <header class="header">
 	<div class="inner">
-		<a class="brand" href="/">
+		<a class="brand" href="#overview">
 			<img src="/tarka-logo-full.svg" alt="Tarka — Prove every signal." width="160" height="138" />
 		</a>
 		<nav class="nav" aria-label="Primary">
@@ -19,9 +19,7 @@ const github = 'https://github.com/pamu512/tarka';
 				{
 					links.map(({ href, label }) => (
 						<li>
-							<a href={href} class:list={{ active: Astro.url.pathname === href }}>
-								{label}
-							</a>
+							<a href={href}>{label}</a>
 						</li>
 					))
 				}
@@ -85,8 +83,7 @@ const github = 'https://github.com/pamu512/tarka';
 		font-size: 0.95rem;
 	}
 
-	.nav a:hover,
-	.nav a.active {
+	.nav a:hover {
 		color: var(--text);
 	}
 

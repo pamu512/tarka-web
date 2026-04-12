@@ -1,6 +1,6 @@
 # Tarka marketing site
 
-Static [Astro](https://astro.build/) site for **Tarka** — hero, “Why Tarka,” live demo embed, and get-started paths that point at the [canonical repo](https://github.com/pamu512/tarka).
+Static [Astro](https://astro.build/) **single-page** site for **Tarka** — overview, why Tarka, live demo embed, Loom walkthrough, and get-started snippets on one scrollable page, with anchor navigation. Links to the [canonical repo](https://github.com/pamu512/tarka). Old paths `/why`, `/demo`, and `/get-started` redirect to `/#why`, `/#demo`, and `/#get-started` on Netlify.
 
 ## Develop
 
@@ -18,7 +18,7 @@ Copy [`.env.example`](.env.example) to `.env` and set at least `PUBLIC_SITE_URL`
 | Variable | Purpose |
 |----------|---------|
 | `PUBLIC_SITE_URL` | Canonical site origin (no trailing slash). Required for sitemap and `og:url`. |
-| `PUBLIC_DEMO_URL` | HTTPS origin of the public Tarka lite UI. When unset, the demo page explains how to configure it. |
+| `PUBLIC_DEMO_URL` | HTTPS origin of the public Tarka lite UI. When unset, the **Demo** section explains how to configure it. |
 | `PUBLIC_LOOM_URL` | Optional override for the embedded walkthrough video. |
 | `PUBLIC_PLAUSIBLE_DOMAIN` | Optional [Plausible](https://plausible.io/) analytics `data-domain`. |
 

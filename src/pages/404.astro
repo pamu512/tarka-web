@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Page not found — Tarka" description="This page does not exist." noIndex>
+	<div class="page">
+		<Header />
+		<main>
+			<h1>Page not found</h1>
+			<p class="muted">The link may be outdated. Return to the <a href="/">Tarka overview</a>.</p>
+		</main>
+		<Footer />
+	</div>
+</Layout>
+
+<style>
+	.page {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	main {
+		flex: 1;
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 3rem 1.25rem;
+		width: 100%;
+	}
+
+	h1 {
+		font-size: clamp(1.5rem, 4vw, 2rem);
+		margin: 0 0 0.75rem;
+	}
+
+	.muted {
+		color: var(--text-muted);
+		margin: 0;
+	}
+</style>

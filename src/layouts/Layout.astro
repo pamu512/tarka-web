@@ -17,6 +17,18 @@ const {
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const absoluteOg = new URL(ogImage, Astro.site).href;
+const siteHref = Astro.site?.href ?? canonical.href;
+
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'SoftwareSourceCode',
+	name: 'Tarka',
+	description,
+	url: siteHref,
+	codeRepository: 'https://github.com/pamu512/tarka',
+	programmingLanguage: ['Python', 'TypeScript'],
+	license: 'https://github.com/pamu512/tarka/blob/master/LICENSE',
+};
 ---
 
 <!doctype html>
@@ -35,6 +47,7 @@ const absoluteOg = new URL(ogImage, Astro.site).href;
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical.href} />
 		<meta property="og:image" content={absoluteOg} />
+		<meta property="og:image:alt" content="Tarka — Prove every signal." />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
@@ -48,6 +61,7 @@ const absoluteOg = new URL(ogImage, Astro.site).href;
 				/>
 			)
 		}
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 	</head>
 	<body>
 		<slot />

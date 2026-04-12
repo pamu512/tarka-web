@@ -5,6 +5,14 @@ import Footer from '../components/Footer.astro';
 
 const demoUrl = import.meta.env.PUBLIC_DEMO_URL;
 const github = 'https://github.com/pamu512/tarka';
+const repo = github;
+const sandboxGuide = `${repo}/blob/master/docs/docs/guides/sandbox-five-minute.md`;
+const codespaces = `https://github.com/codespaces/new?hide_repo_select=true&ref=master&repo=pamu512%2Ftarka`;
+const loomUrl =
+	import.meta.env.PUBLIC_LOOM_URL ?? 'https://www.loom.com/share/2bc3dce78042444fb3216ca076a16fbc';
+const loomEmbed = loomUrl.includes('/embed/')
+	? loomUrl
+	: loomUrl.replace(/loom\.com\/share\//, 'loom.com/embed/');
 ---
 
 <Layout
@@ -12,11 +20,12 @@ const github = 'https://github.com/pamu512/tarka';
 	description="Open-source, modular fraud detection. Rules, ML, graph, and cases behind a Decision API your team can own, audit, and extend."
 >
 	<div class="page">
+		<a class="skip-link" href="#main">Skip to main content</a>
 		<Header />
-		<main>
-			<section class="hero">
+		<main id="main">
+			<section id="overview" class="hero" aria-labelledby="hero-title">
 				<p class="eyebrow">Open-source fraud platform</p>
-				<h1>Prove every signal.</h1>
+				<h1 id="hero-title">Prove every signal.</h1>
 				<p class="lede">
 					Tarka is modular fraud detection for teams that need real-time decisions, explainable outcomes, and
 					investigations—without vendor lock-in.
@@ -28,7 +37,7 @@ const github = 'https://github.com/pamu512/tarka';
 								Try live demo
 							</a>
 						) : (
-							<a class="btn primary" href="/demo">
+							<a class="btn primary" href="#demo">
 								View demo
 							</a>
 						)
@@ -39,28 +48,176 @@ const github = 'https://github.com/pamu512/tarka';
 				</div>
 			</section>
 
-			<section class="grid">
+			<section class="grid" aria-labelledby="pillars-heading">
+				<h2 id="pillars-heading" class="sr-only">What you get</h2>
 				<article>
-					<h2>Own the stack</h2>
+					<h3>Own the stack</h3>
 					<p>
 						Pick the modules you need—Decision API, cases, graph, ML, integrations—and run them where you
 						already operate.
 					</p>
 				</article>
 				<article>
-					<h2>Explainable by design</h2>
+					<h3>Explainable by design</h3>
 					<p>
 						Every signal is a hypothesis; decisions surface inference context and evidence your analysts and
 						auditors can follow.
 					</p>
 				</article>
 				<article>
-					<h2>Built for practitioners</h2>
+					<h3>Built for practitioners</h3>
 					<p>
 						SDKs, replay tooling, and a case UI that stays usable when backends are down (mock-friendly for
 						demos).
 					</p>
 				</article>
+			</section>
+
+			<section id="why" class="section why" aria-labelledby="why-heading">
+				<h2 id="why-heading">Why Tarka</h2>
+				<p class="intro">
+					<em>Tarka</em> (Sanskrit तर्क) names disciplined hypothesis testing—fitting for a platform where every
+					signal is a hypothesis and every decision should be provable.
+				</p>
+
+				<div class="subsection">
+					<h3>Choose Tarka when you need to</h3>
+					<ul>
+						<li>
+							<strong>Own and evolve controls</strong> — fraud logic your team can audit, extend, and ship
+							without waiting on a black-box vendor.
+						</li>
+						<li>
+							<strong>Unify rules, ML, and graph</strong> — one stack for scoring, entity insight, and case
+							work—behind a normalized Decision API and typed clients.
+						</li>
+						<li>
+							<strong>Support investigations</strong> — case workflows and explainability surfaces built for
+							analysts, not only batch scores.
+						</li>
+						<li>
+							<strong>Integrate widely</strong> — connect KYC, sanctions, device, CRM, or dispute tools through
+							the integration layer instead of one-off scripts.
+						</li>
+						<li>
+							<strong>Meet compliance expectations</strong> — traceability, security workflows, and
+							documented dependencies as first-class concerns in the OSS repo.
+						</li>
+					</ul>
+				</div>
+
+				<div class="honest">
+					<h3>When something simpler might be enough</h3>
+					<p>
+						Tarka may be more than you need if you only require a minimal single-rule workflow and do not need
+						integrations, investigations, or governance depth. In that case, a lighter tool may be faster to
+						operate.
+					</p>
+				</div>
+			</section>
+
+			<section id="demo" class="section demo" aria-labelledby="demo-heading">
+				<h2 id="demo-heading">Experience the demo</h2>
+				<p class="intro">
+					The live sandbox is the full lite stack (frontend, Decision API, integration ingress). Shared demos may
+					reset—treat data as ephemeral.
+				</p>
+
+				{
+					demoUrl ? (
+						<>
+							<div class="banner" role="status">
+								Shared demo environment — data may reset without notice.
+							</div>
+							<div class="frame-wrap">
+								<iframe
+									src={demoUrl}
+									title="Tarka live demo"
+									class="frame"
+									loading="lazy"
+									referrerpolicy="no-referrer-when-downgrade"
+								/>
+							</div>
+							<p class="alt">
+								<a href={demoUrl} target="_blank" rel="noopener noreferrer">
+									Open demo in a new tab
+								</a>{' '}
+								if embedding is blocked by your browser or the demo host.
+							</p>
+						</>
+					) : (
+						<div class="placeholder">
+							<p>
+								<strong>No public demo URL configured.</strong> Set <code>PUBLIC_DEMO_URL</code> in your
+								deployment environment to the HTTPS origin of your Tarka lite deployment (see{' '}
+								<code>deploy/README.md</code> in this project).
+							</p>
+							<p>
+								Until then, run Tarka locally with{' '}
+								<code>docker compose -f deploy/docker-compose.lite.yml up -d --build</code> from the{' '}
+								<a href={repo}>canonical repository</a>.
+							</p>
+						</div>
+					)
+				}
+
+				<div class="video">
+					<h3>Five-minute walkthrough</h3>
+					<p class="muted">Sandbox flow, inference context, OSINT path, and case explainability.</p>
+					<div class="loom">
+						<iframe
+							src={loomEmbed}
+							title="Tarka walkthrough video"
+							allow="fullscreen"
+							style="border: none; width: 100%; height: 100%;"
+						/>
+					</div>
+				</div>
+			</section>
+
+			<section id="get-started" class="section get-started" aria-labelledby="start-heading">
+				<h2 id="start-heading">Get started</h2>
+				<p class="intro">
+					Everything below lives in the <a href={repo}>canonical repository</a>. For copy-paste ports, curls,
+					and UI paths, use the <a href={sandboxGuide}>five-minute sandbox guide</a>.
+				</p>
+
+				<div class="subsection">
+					<h3>1. Installer (Python 3.11+)</h3>
+					<pre><code>git clone https://github.com/pamu512/tarka.git
+cd tarka
+python tarka.py install --lite</code></pre>
+					<p>
+						Use <code>python tarka.py install</code> for an interactive module pick, or <code>--all</code> for
+						the full stack.
+					</p>
+				</div>
+
+				<div class="subsection">
+					<h3>2. Docker Compose (lite)</h3>
+					<pre><code>git clone https://github.com/pamu512/tarka.git
+cd tarka
+docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
+					<p>
+						Typical local ports: frontend <code>3000</code>, decision API <code>8000</code>, integration
+						ingress <code>8003</code>.
+					</p>
+				</div>
+
+				<div class="subsection">
+					<h3>3. Prebuilt sandbox image (optional)</h3>
+					<pre><code>docker compose -f https://raw.githubusercontent.com/pamu512/tarka/master/deploy/docker-compose.sandbox.yml up -d</code></pre>
+				</div>
+
+				<div class="subsection">
+					<h3>4. GitHub Codespaces</h3>
+					<p>
+						Open a cloud dev environment from the repo, then run the same Compose command.{' '}
+						<a href={codespaces}>Create a Codespace</a>
+						— ports <code>3000</code>, <code>8000</code>, <code>8002</code>, <code>8003</code> are forwarded per
+						the devcontainer.
+					</p>
+				</div>
 			</section>
 		</main>
 		<Footer />
@@ -82,9 +239,27 @@ const github = 'https://github.com/pamu512/tarka';
 		width: 100%;
 	}
 
+	.skip-link {
+		position: absolute;
+		left: -9999px;
+		z-index: 100;
+		padding: 0.5rem 1rem;
+		background: var(--accent);
+		color: var(--bg);
+		font-weight: 600;
+		border-radius: 0 0 8px 0;
+	}
+
+	.skip-link:focus {
+		left: 1rem;
+		top: 0.5rem;
+		outline: 2px solid var(--accent-hover);
+		outline-offset: 2px;
+	}
+
 	.hero {
 		max-width: 40rem;
-		margin-bottom: 3.5rem;
+		margin-bottom: 3rem;
 	}
 
 	.eyebrow {
@@ -95,7 +270,7 @@ const github = 'https://github.com/pamu512/tarka';
 		margin: 0 0 0.75rem;
 	}
 
-	h1 {
+	.hero h1 {
 		font-size: clamp(2rem, 5vw, 2.75rem);
 		font-weight: 700;
 		line-height: 1.15;
@@ -156,6 +331,7 @@ const github = 'https://github.com/pamu512/tarka';
 		display: grid;
 		gap: 1.5rem;
 		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		margin-bottom: 4rem;
 	}
 
 	.grid article {
@@ -165,7 +341,7 @@ const github = 'https://github.com/pamu512/tarka';
 		background: var(--bg-elevated);
 	}
 
-	.grid h2 {
+	.grid h3 {
 		margin: 0 0 0.5rem;
 		font-size: 1.05rem;
 		font-weight: 600;
@@ -175,5 +351,159 @@ const github = 'https://github.com/pamu512/tarka';
 		margin: 0;
 		font-size: 0.95rem;
 		color: var(--text-muted);
+	}
+
+	.section {
+		margin-bottom: 4rem;
+		scroll-margin-top: 5rem;
+	}
+
+	.section h2 {
+		font-size: clamp(1.5rem, 3vw, 1.85rem);
+		margin: 0 0 0.75rem;
+	}
+
+	.section .intro {
+		font-size: 1.05rem;
+		color: var(--text-muted);
+		margin: 0 0 1.5rem;
+		max-width: 52ch;
+	}
+
+	.why .intro {
+		font-size: 1.1rem;
+	}
+
+	.subsection {
+		margin-bottom: 2rem;
+	}
+
+	.subsection h3 {
+		font-size: 1.1rem;
+		margin: 0 0 0.65rem;
+	}
+
+	.subsection ul {
+		margin: 0;
+		padding-left: 1.25rem;
+		color: var(--text-muted);
+	}
+
+	.subsection li {
+		margin-bottom: 0.65rem;
+	}
+
+	.subsection li strong {
+		color: var(--text);
+	}
+
+	.honest {
+		padding: 1.25rem 1.35rem;
+		border-radius: var(--radius);
+		border: 1px dashed var(--border);
+		background: rgba(56, 189, 248, 0.06);
+	}
+
+	.honest h3 {
+		font-size: 1rem;
+		margin: 0 0 0.5rem;
+	}
+
+	.honest p {
+		margin: 0;
+		color: var(--text-muted);
+		font-size: 0.95rem;
+	}
+
+	.demo .intro {
+		max-width: none;
+	}
+
+	.banner {
+		font-size: 0.85rem;
+		padding: 0.5rem 0.85rem;
+		border-radius: 8px;
+		background: rgba(251, 191, 36, 0.12);
+		border: 1px solid rgba(251, 191, 36, 0.35);
+		color: #fde68a;
+		margin-bottom: 1rem;
+	}
+
+	.frame-wrap {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 16 / 10;
+		max-height: min(72vh, 640px);
+		border-radius: var(--radius);
+		overflow: hidden;
+		border: 1px solid var(--border);
+		background: var(--bg-elevated);
+	}
+
+	.frame {
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+
+	.alt {
+		font-size: 0.9rem;
+		color: var(--text-muted);
+		margin-top: 0.75rem;
+	}
+
+	.placeholder {
+		padding: 1.25rem 1.35rem;
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		background: var(--bg-elevated);
+		margin-bottom: 2rem;
+	}
+
+	.placeholder p {
+		margin: 0 0 0.75rem;
+		color: var(--text-muted);
+	}
+
+	.video {
+		margin-top: 2.5rem;
+	}
+
+	.video h3 {
+		font-size: 1.15rem;
+		margin: 0 0 0.35rem;
+	}
+
+	.muted {
+		margin: 0 0 1rem;
+		font-size: 0.95rem;
+		color: var(--text-muted);
+	}
+
+	.loom {
+		position: relative;
+		padding-bottom: 62.5%;
+		height: 0;
+		border-radius: var(--radius);
+		overflow: hidden;
+		border: 1px solid var(--border);
+		background: #000;
+	}
+
+	.loom iframe {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.get-started .subsection pre {
+		margin-top: 0.5rem;
+	}
+
+	.get-started .subsection p {
+		color: var(--text-muted);
+		font-size: 0.95rem;
+		margin: 0.75rem 0 0;
 	}
 </style>

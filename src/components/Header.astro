@@ -1,6 +1,4 @@
 ---
-import TarkaLogoMark from './TarkaLogoMark.astro';
-
 const links = [
 	{ href: '#overview', label: 'Overview' },
 	{ href: '#choose-role', label: 'By role' },
@@ -14,7 +12,17 @@ const github = 'https://github.com/pamu512/tarka';
 <header class="header">
 	<div class="inner">
 		<a class="brand" href="#overview" aria-label="Tarka — home">
-			<TarkaLogoMark />
+			<span class="brand-pad">
+				<img
+					src="/tarka-logo-lockup.png"
+					width="220"
+					height="80"
+					alt="Tarka — Prove every signal."
+					class="brand-img"
+					loading="eager"
+					decoding="async"
+				/>
+			</span>
 		</a>
 		<nav class="nav" aria-label="Primary">
 			<ul>
@@ -59,15 +67,32 @@ const github = 'https://github.com/pamu512/tarka';
 	.brand {
 		display: flex;
 		align-items: center;
-		min-height: 2.5rem;
 		text-decoration: none;
 		color: inherit;
 	}
 
-	.brand:focus-visible {
+	.brand-pad {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background: #ffffff;
+		border-radius: 8px;
+		padding: 0.35rem 0.65rem;
+		line-height: 0;
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+	}
+
+	.brand-img {
+		display: block;
+		height: 2.65rem;
+		width: auto;
+		max-width: min(52vw, 13.5rem);
+		object-fit: contain;
+	}
+
+	.brand:focus-visible .brand-pad {
 		outline: 2px solid var(--accent);
-		outline-offset: 4px;
-		border-radius: 6px;
+		outline-offset: 3px;
 	}
 
 	.nav ul {

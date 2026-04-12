@@ -2,12 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import AudiencePathCards from '../components/AudiencePathCards.astro';
 
 const demoUrl = import.meta.env.PUBLIC_DEMO_URL;
 const github = 'https://github.com/pamu512/tarka';
 const repo = github;
 const sandboxGuide = `${repo}/blob/master/docs/docs/guides/sandbox-five-minute.md`;
 const codespaces = `https://github.com/codespaces/new?hide_repo_select=true&ref=master&repo=pamu512%2Ftarka`;
+const security = `${repo}/blob/master/SECURITY.md`;
 const loomUrl =
 	import.meta.env.PUBLIC_LOOM_URL ?? 'https://www.loom.com/share/2bc3dce78042444fb3216ca076a16fbc';
 const loomEmbed = loomUrl.includes('/embed/')
@@ -17,7 +19,7 @@ const loomEmbed = loomUrl.includes('/embed/')
 
 <Layout
 	title="Tarka — Prove every signal."
-	description="Open-source, modular fraud detection. Rules, ML, graph, and cases behind a Decision API your team can own, audit, and extend."
+	description="Open-source fraud detection for engineering, operations, and leadership: explainable decisions, modular stack, and controls you can own—without giving up the repo when you need to ship."
 >
 	<div class="page">
 		<a class="skip-link" href="#main">Skip to main content</a>
@@ -29,6 +31,10 @@ const loomEmbed = loomUrl.includes('/embed/')
 				<p class="lede">
 					Tarka is modular fraud detection for teams that need real-time decisions, explainable outcomes, and
 					investigations—without vendor lock-in.
+				</p>
+				<p class="hero-hint">
+					<a href="#choose-role">Choose your path</a> (developer, operations, leader, or investor), or scroll for
+					the full story, demo, and install paths.
 				</p>
 				<div class="actions">
 					{
@@ -48,6 +54,8 @@ const loomEmbed = loomUrl.includes('/embed/')
 				</div>
 			</section>
 
+			<AudiencePathCards />
+
 			<section class="grid" aria-labelledby="pillars-heading">
 				<h2 id="pillars-heading" class="sr-only">What you get</h2>
 				<article>
@@ -65,12 +73,157 @@ const loomEmbed = loomUrl.includes('/embed/')
 					</p>
 				</article>
 				<article>
-					<h3>Built for practitioners</h3>
+					<h3>From analysts to automation</h3>
 					<p>
-						SDKs, replay tooling, and a case UI that stays usable when backends are down (mock-friendly for
-						demos).
+						Case workflows and explainability for operators; APIs and SDKs when you need to embed scoring in
+						your own services.
 					</p>
 				</article>
+			</section>
+
+			<section id="audience-developers" class="section audience audience-dev" tabindex="-1" aria-labelledby="aud-dev">
+				<h2 id="aud-dev">For developers</h2>
+				<p class="audience-lead">
+					Ship scoring and case flows behind a stable surface area: evaluate, ingest, and extend with modules
+					you actually need—not a monolithic black box.
+				</p>
+				<ul class="audience-list">
+					<li>
+						<strong>Integrate, don’t rip and replace</strong> — REST-shaped Decision API and typed clients so your
+						services call one hub for decisions and context.
+					</li>
+					<li>
+						<strong>Iterate locally</strong> — CLI installer, Docker Compose paths, and CI-visible quality gates
+						in the open repository.
+					</li>
+					<li>
+						<strong>See the contract</strong> — OpenAPI and SDKs track the same payloads your UI and automation
+						use.
+					</li>
+				</ul>
+				<p class="audience-cta">
+					<a class="btn primary" href="#get-started">Install &amp; run</a>
+					<a class="btn ghost" href={github} target="_blank" rel="noopener noreferrer">
+						Browse the repo
+					</a>
+				</p>
+			</section>
+
+			<section
+				id="audience-operations"
+				class="section audience audience-ops"
+				tabindex="-1"
+				aria-labelledby="aud-ops"
+			>
+				<h2 id="aud-ops">For fraud &amp; risk operations</h2>
+				<p class="audience-lead">
+					Give analysts explainable decisions and structured case work—without waiting on a vendor roadmap for
+					every rule change or integration.
+				</p>
+				<ul class="audience-list">
+					<li>
+						<strong>Show your work</strong> — Decisions carry inference context and evidence your team can defend
+						in reviews and handoffs.
+					</li>
+					<li>
+						<strong>Investigations first</strong> — Case-oriented flows, not only batch scores in a spreadsheet
+						export.
+					</li>
+					<li>
+						<strong>Integrate the real world</strong> — KYC, sanctions, device, CRM, and dispute paths through
+						one integration story (exact adapters depend on what you enable).
+					</li>
+					<li>
+						<strong>Own the operating reality</strong> — Self-hosted means <em>you</em> own change windows,
+						capacity, and runbooks—plan staffing accordingly.
+					</li>
+				</ul>
+				<p class="audience-cta">
+					<a class="btn primary" href="#demo">Watch the walkthrough</a>
+					<a class="btn ghost" href={security} target="_blank" rel="noopener noreferrer">
+						Security disclosure
+					</a>
+				</p>
+			</section>
+
+			<section
+				id="audience-leaders"
+				class="section audience audience-leaders"
+				tabindex="-1"
+				aria-labelledby="aud-lead"
+			>
+				<h2 id="aud-lead">For program sponsors &amp; executives</h2>
+				<p class="audience-lead">
+					Reduce strategic risk from opaque vendor logic: keep core fraud decisions and evidence inside your
+					organization’s control, with a path to audit and evolve.
+				</p>
+				<ul class="audience-list">
+					<li>
+						<strong>Escape lock-in on the core</strong> — Your team can audit, extend, and ship controls without
+						being captive to a single vendor’s release train for the risk engine.
+					</li>
+					<li>
+						<strong>Consolidate where it counts</strong> — Rules, ML, graph, and cases behind one decision
+						surface—fewer brittle handoffs between point tools.
+					</li>
+					<li>
+						<strong>Align risk and engineering</strong> — Shared artifacts (contracts, traces, case exports)
+						that both sides can examine under pressure.
+					</li>
+					<li>
+						<strong>Compliance-oriented posture</strong> — Traceability and documented dependencies are treated
+						as first-class in the OSS program (not legal advice; map to your regime).
+					</li>
+				</ul>
+				<div class="audience-note">
+					<p>
+						<strong>Total cost honesty:</strong> OSS avoids traditional license line items; you still budget for
+						people, cloud or data-center capacity, and integration—not a fake “free lunch.”
+					</p>
+				</div>
+				<p class="audience-cta">
+					<a class="btn primary" href="#demo">See the product story</a>
+					<a class="btn ghost" href="#why">Read the positioning</a>
+				</p>
+			</section>
+
+			<section
+				id="audience-investors"
+				class="section audience audience-inv"
+				tabindex="-1"
+				aria-labelledby="aud-inv"
+			>
+				<h2 id="aud-inv">For investors &amp; strategic partners</h2>
+				<p class="audience-lead">
+					Tarka is open infrastructure for a regulated, high-stakes workflow: every signal is a hypothesis; every
+					decision should be provable. Distribution starts with developers and GitHub—not a gated sales deck.
+				</p>
+				<ul class="audience-list">
+					<li>
+						<strong>Wedge</strong> — Modular fraud stack (rules, ML, graph, cases, integrations) behind a
+						normalized API—teams adopt components before committing to a full platform swap.
+					</li>
+					<li>
+						<strong>Thesis fit</strong> — Explainability and operator trust move budget in fraud; OSS lowers
+						adoption friction and surfaces serious evaluators early.
+					</li>
+					<li>
+						<strong>What to diligence</strong> — Public CI/security posture, release cadence, module depth, and
+						ecosystem hooks (commercial adjacencies can sit beside OSS without confusion if messaged cleanly).
+					</li>
+				</ul>
+				<div class="audience-note">
+					<p>
+						<strong>Early-stage candor:</strong> Traction metrics belong in conversation and materials suited to
+						your stage—this site is intentionally product- and repo-forward, not a substitute for a data room.
+					</p>
+				</div>
+				<p class="audience-cta">
+					<a class="btn primary" href={github} target="_blank" rel="noopener noreferrer">
+						Review the repository
+					</a>
+					<a class="btn ghost" href="#get-started">See how teams adopt</a>
+				</p>
 			</section>
 
 			<section id="why" class="section why" aria-labelledby="why-heading">
@@ -222,6 +375,43 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 		</main>
 		<Footer />
 	</div>
+
+	<script is:inline>
+		(function () {
+			var params = new URLSearchParams(window.location.search);
+			var r = params.get('role') || params.get('audience');
+			var map = {
+				developers: 'audience-developers',
+				dev: 'audience-developers',
+				developer: 'audience-developers',
+				operations: 'audience-operations',
+				ops: 'audience-operations',
+				operation: 'audience-operations',
+				leaders: 'audience-leaders',
+				leader: 'audience-leaders',
+				executives: 'audience-leaders',
+				executive: 'audience-leaders',
+				investors: 'audience-investors',
+				investor: 'audience-investors',
+			};
+			if (!r || !map[r]) return;
+			var id = map[r];
+			requestAnimationFrame(function () {
+				var el = document.getElementById(id);
+				if (!el) return;
+				el.focus({ preventScroll: true });
+				el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				try {
+					var u = new URL(window.location.href);
+					u.searchParams.delete('role');
+					u.searchParams.delete('audience');
+					window.history.replaceState({}, '', u.pathname + u.search + '#' + id);
+				} catch (e) {
+					window.location.hash = '#' + id;
+				}
+			});
+		})();
+	</script>
 </Layout>
 
 <style>
@@ -258,8 +448,8 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 	}
 
 	.hero {
-		max-width: 40rem;
-		margin-bottom: 3rem;
+		max-width: 44rem;
+		margin-bottom: 2.5rem;
 	}
 
 	.eyebrow {
@@ -281,7 +471,19 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 	.lede {
 		font-size: 1.15rem;
 		color: var(--text-muted);
-		margin: 0 0 1.75rem;
+		margin: 0 0 1rem;
+	}
+
+	.hero-hint {
+		font-size: 0.95rem;
+		color: var(--text-muted);
+		margin: 0 0 1.5rem;
+		max-width: 48ch;
+		line-height: 1.5;
+	}
+
+	.hero-hint a {
+		font-weight: 600;
 	}
 
 	.actions {
@@ -413,6 +615,75 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 		margin: 0;
 		color: var(--text-muted);
 		font-size: 0.95rem;
+	}
+
+	.audience {
+		padding: 1.5rem 1.5rem 1.65rem;
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		background: rgba(18, 26, 46, 0.65);
+	}
+
+	.audience-dev {
+		border-left: 4px solid #38bdf8;
+	}
+	.audience-ops {
+		border-left: 4px solid #a78bfa;
+	}
+	.audience-leaders {
+		border-left: 4px solid #fbbf24;
+	}
+	.audience-inv {
+		border-left: 4px solid #34d399;
+	}
+
+	.audience-lead {
+		font-size: 1.05rem;
+		color: var(--text-muted);
+		margin: 0 0 1.25rem;
+		max-width: 58ch;
+		line-height: 1.55;
+	}
+
+	.audience-list {
+		margin: 0 0 1.25rem;
+		padding-left: 1.25rem;
+		color: var(--text-muted);
+	}
+
+	.audience-list li {
+		margin-bottom: 0.65rem;
+		line-height: 1.5;
+	}
+
+	.audience-list strong {
+		color: var(--text);
+	}
+
+	.audience-note {
+		padding: 1rem 1.1rem;
+		border-radius: 8px;
+		background: rgba(15, 23, 42, 0.6);
+		border: 1px solid var(--border);
+		margin-bottom: 1.25rem;
+	}
+
+	.audience-note p {
+		margin: 0;
+		font-size: 0.92rem;
+		color: var(--text-muted);
+		line-height: 1.5;
+	}
+
+	.audience-note strong {
+		color: var(--text);
+	}
+
+	.audience-cta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin: 0;
 	}
 
 	.demo .intro {

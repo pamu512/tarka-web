@@ -2,6 +2,15 @@
 
 Static [Astro](https://astro.build/) **single-page** site for **Tarka** — overview, why Tarka, live demo embed, Loom walkthrough, and get-started snippets on one scrollable page, with anchor navigation. Links to the [canonical repo](https://github.com/pamu512/tarka). Old paths `/why`, `/demo`, and `/get-started` redirect to `/#why`, `/#demo`, and `/#get-started` on Netlify.
 
+**Audience deep links:** open a section directly with a query string (hash is applied after load):
+
+- `?role=developers` or `?audience=dev` → developers
+- `?role=operations` or `?audience=ops` → fraud & risk operations
+- `?role=leaders` or `?audience=executives` → executives / sponsors
+- `?role=investors` → investors & partners
+
+Example: `https://yoursite.netlify.app/?role=operations`
+
 ## Develop
 
 ```bash

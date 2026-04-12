@@ -11,6 +11,8 @@ Static [Astro](https://astro.build/) **single-page** site for **Tarka** — over
 
 Example: `https://yoursite.netlify.app/?role=operations`
 
+**Essays:** [Medium @tarka](https://medium.com/@tarka) — linked from the site footer and hero.
+
 ## Develop
 
 ```bash

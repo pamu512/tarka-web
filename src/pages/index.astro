@@ -13,6 +13,7 @@ const security = `${repo}/blob/master/SECURITY.md`;
 const saarthiPro = 'https://github.com/pamu512/Saarthi-pro';
 const saarthiCompare = `${repo}/blob/master/docs/docs/guides/saarthi-pro-vs-oss.md`;
 const investigationAgent = `${repo}/tree/master/services/investigation-agent`;
+const mediumBlog = 'https://medium.com/@tarka';
 const loomUrl =
 	import.meta.env.PUBLIC_LOOM_URL ?? 'https://www.loom.com/share/2bc3dce78042444fb3216ca076a16fbc';
 const loomEmbed = loomUrl.includes('/embed/')
@@ -37,7 +38,11 @@ const loomEmbed = loomUrl.includes('/embed/')
 				</p>
 				<p class="hero-hint">
 					<a href="#choose-role">Choose your path</a> (developer, operations, leader, or investor), or scroll for
-					the full story, demo, and install paths.
+					the full story, demo, and install paths. Longer essays on fraud, risk, and engineering live on{' '}
+					<a href={mediumBlog} target="_blank" rel="noopener noreferrer">
+						Medium @tarka
+					</a>
+					.
 				</p>
 				<div class="actions">
 					{

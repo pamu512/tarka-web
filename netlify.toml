@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Match Astro’s supported LTS; avoids surprise breakage on Netlify’s default Node.
+  NODE_VERSION = "20"
+
+# Optional: proxy the Astro dev server via Netlify CLI (`netlify dev`).
+[dev]
+  command = "npm run dev"
+  targetPort = 4321

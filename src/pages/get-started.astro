@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const repo = 'https://github.com/pamu512/tarka';
+const sandboxGuide = `${repo}/blob/master/docs/docs/guides/sandbox-five-minute.md`;
+const codespaces = `https://github.com/codespaces/new?hide_repo_select=true&ref=master&repo=pamu512%2Ftarka`;
+---
+
+<Layout
+	title="Get started — Tarka"
+	description="Install Tarka with the Python CLI, Docker Compose lite stack, or GitHub Codespaces. Links to the five-minute sandbox guide."
+>
+	<div class="page">
+		<Header />
+		<main>
+			<h1>Get started</h1>
+			<p class="intro">
+				Everything below lives in the{' '}
+				<a href={repo}>canonical repository</a>. For copy-paste ports, curls, and UI paths, use the{' '}
+				<a href={sandboxGuide}>five-minute sandbox guide</a>.
+			</p>
+
+			<section>
+				<h2>1. Installer (Python 3.11+)</h2>
+				<pre><code>git clone https://github.com/pamu512/tarka.git
+cd tarka
+python tarka.py install --lite</code></pre>
+				<p>
+					Use <code>python tarka.py install</code> for an interactive module pick, or <code>--all</code> for
+					the full stack.
+				</p>
+			</section>
+
+			<section>
+				<h2>2. Docker Compose (lite)</h2>
+				<pre><code>git clone https://github.com/pamu512/tarka.git
+cd tarka
+docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
+				<p>Typical local ports: frontend <code>3000</code>, decision API <code>8000</code>, integration ingress <code>8003</code>.</p>
+			</section>
+
+			<section>
+				<h2>3. Prebuilt sandbox image (optional)</h2>
+				<pre><code>docker compose -f https://raw.githubusercontent.com/pamu512/tarka/master/deploy/docker-compose.sandbox.yml up -d</code></pre>
+			</section>
+
+			<section>
+				<h2>4. GitHub Codespaces</h2>
+				<p>
+					Open a cloud dev environment from the repo, then run the same Compose command.{' '}
+					<a href={codespaces}>Create a Codespace</a>
+					— ports <code>3000</code>, <code>8000</code>, <code>8002</code>, <code>8003</code> are forwarded per
+					the devcontainer.
+				</p>
+			</section>
+		</main>
+		<Footer />
+	</div>
+</Layout>
+
+<style>
+	.page {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	main {
+		flex: 1;
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 2rem 1.25rem 4rem;
+		width: 100%;
+	}
+
+	h1 {
+		font-size: clamp(1.75rem, 4vw, 2.25rem);
+		margin: 0 0 1rem;
+	}
+
+	.intro {
+		font-size: 1.05rem;
+		color: var(--text-muted);
+		margin: 0 0 2rem;
+	}
+
+	section {
+		margin-bottom: 2rem;
+	}
+
+	h2 {
+		font-size: 1.1rem;
+		margin: 0 0 0.65rem;
+	}
+
+	section p {
+		color: var(--text-muted);
+		font-size: 0.95rem;
+		margin: 0.75rem 0 0;
+	}
+</style>

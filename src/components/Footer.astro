@@ -1,0 +1,90 @@
+---
+const repo = 'https://github.com/pamu512/tarka';
+const security = `${repo}/blob/master/SECURITY.md`;
+const conduct = `${repo}/blob/master/CODE_OF_CONDUCT.md`;
+const codespaces = `https://github.com/codespaces/new?hide_repo_select=true&ref=master&repo=pamu512%2Ftarka`;
+const docs = `${repo}/tree/master/docs`;
+---
+
+<footer class="footer">
+	<div class="inner">
+		<div class="strip">
+			<span class="label">Open source</span>
+			<a href={`${repo}/actions/workflows/ci.yml`} target="_blank" rel="noopener noreferrer">
+				<img
+					src="https://github.com/pamu512/tarka/actions/workflows/ci.yml/badge.svg"
+					alt="CI status"
+					width="90"
+					height="20"
+					loading="lazy"
+				/>
+			</a>
+			<a href={`${repo}/actions/workflows/security-scan.yml`} target="_blank" rel="noopener noreferrer">
+				<img
+					src="https://github.com/pamu512/tarka/actions/workflows/security-scan.yml/badge.svg"
+					alt="Security scan status"
+					width="120"
+					height="20"
+					loading="lazy"
+				/>
+			</a>
+		</div>
+		<nav class="links" aria-label="Footer">
+			<a href={repo}>Repository</a>
+			<a href={docs}>Docs</a>
+			<a href={security}>Security</a>
+			<a href={conduct}>Code of conduct</a>
+			<a href={codespaces}>GitHub Codespaces</a>
+		</nav>
+		<p class="fine">
+			Tarka is open-source software. “Prove every signal.” — modular fraud detection you can run and extend.
+		</p>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		margin-top: auto;
+		padding: 2.5rem 1.25rem;
+		border-top: 1px solid var(--border);
+		background: rgba(12, 18, 34, 0.5);
+	}
+
+	.inner {
+		max-width: 1100px;
+		margin: 0 auto;
+	}
+
+	.strip {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.75rem 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.label {
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--text-muted);
+	}
+
+	.links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem 1.25rem;
+		margin-bottom: 1rem;
+	}
+
+	.links a {
+		font-size: 0.9rem;
+	}
+
+	.fine {
+		margin: 0;
+		font-size: 0.8rem;
+		color: var(--text-muted);
+		max-width: 52ch;
+	}
+</style>

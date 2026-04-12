@@ -1,0 +1,34 @@
+# Example: TLS + reverse proxy for Tarka lite on one host.
+# Install Caddy, replace demo.example.com and paths, then:
+#   sudo cp Caddyfile /etc/caddy/Caddyfile && sudo systemctl reload caddy
+#
+# Assumes Docker publishes ports on localhost:
+#   127.0.0.1:3000  frontend
+#   127.0.0.1:8000  decision-api
+#   127.0.0.1:8003  integration-ingress
+
+demo.example.com {
+	encode gzip zstd
+
+	# Rate limiting: use a CDN/WAF (e.g. Cloudflare) or build Caddy with
+	# github.com/mholt/caddy-ratelimit — stock Caddy has no built-in limiter.
+
+	# Main UI
+	handle / {
+		reverse_proxy 127.0.0.1:3000
+	}
+
+	# API paths used by the UI (adjust if your frontend uses different base paths)
+	handle /v1/* {
+		reverse_proxy 127.0.0.1:8000
+	}
+
+	handle /api/* {
+		reverse_proxy 127.0.0.1:8000
+	}
+
+	# Integration ingress (OSINT) — path prefix depends on frontend config
+	handle /integration/* {
+		reverse_proxy 127.0.0.1:8003
+	}
+}

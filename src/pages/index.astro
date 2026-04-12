@@ -1,0 +1,179 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const demoUrl = import.meta.env.PUBLIC_DEMO_URL;
+const github = 'https://github.com/pamu512/tarka';
+---
+
+<Layout
+	title="Tarka — Prove every signal."
+	description="Open-source, modular fraud detection. Rules, ML, graph, and cases behind a Decision API your team can own, audit, and extend."
+>
+	<div class="page">
+		<Header />
+		<main>
+			<section class="hero">
+				<p class="eyebrow">Open-source fraud platform</p>
+				<h1>Prove every signal.</h1>
+				<p class="lede">
+					Tarka is modular fraud detection for teams that need real-time decisions, explainable outcomes, and
+					investigations—without vendor lock-in.
+				</p>
+				<div class="actions">
+					{
+						demoUrl ? (
+							<a class="btn primary" href={demoUrl} target="_blank" rel="noopener noreferrer">
+								Try live demo
+							</a>
+						) : (
+							<a class="btn primary" href="/demo">
+								View demo
+							</a>
+						)
+					}
+					<a class="btn ghost" href={github} target="_blank" rel="noopener noreferrer">
+						View on GitHub
+					</a>
+				</div>
+			</section>
+
+			<section class="grid">
+				<article>
+					<h2>Own the stack</h2>
+					<p>
+						Pick the modules you need—Decision API, cases, graph, ML, integrations—and run them where you
+						already operate.
+					</p>
+				</article>
+				<article>
+					<h2>Explainable by design</h2>
+					<p>
+						Every signal is a hypothesis; decisions surface inference context and evidence your analysts and
+						auditors can follow.
+					</p>
+				</article>
+				<article>
+					<h2>Built for practitioners</h2>
+					<p>
+						SDKs, replay tooling, and a case UI that stays usable when backends are down (mock-friendly for
+						demos).
+					</p>
+				</article>
+			</section>
+		</main>
+		<Footer />
+	</div>
+</Layout>
+
+<style>
+	.page {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	main {
+		flex: 1;
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 2.5rem 1.25rem 4rem;
+		width: 100%;
+	}
+
+	.hero {
+		max-width: 40rem;
+		margin-bottom: 3.5rem;
+	}
+
+	.eyebrow {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: var(--accent);
+		margin: 0 0 0.75rem;
+	}
+
+	h1 {
+		font-size: clamp(2rem, 5vw, 2.75rem);
+		font-weight: 700;
+		line-height: 1.15;
+		margin: 0 0 1rem;
+		letter-spacing: -0.02em;
+	}
+
+	.lede {
+		font-size: 1.15rem;
+		color: var(--text-muted);
+		margin: 0 0 1.75rem;
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.65rem 1.25rem;
+		border-radius: var(--radius);
+		font-weight: 600;
+		font-size: 0.95rem;
+		text-decoration: none;
+		border: 1px solid transparent;
+		transition:
+			background 0.15s,
+			border-color 0.15s,
+			color 0.15s;
+	}
+
+	.btn.primary {
+		background: var(--accent);
+		color: var(--bg);
+	}
+
+	.btn.primary:hover {
+		background: var(--accent-hover);
+		color: var(--bg);
+	}
+
+	.btn.ghost {
+		border-color: var(--border);
+		color: var(--text);
+		background: transparent;
+	}
+
+	.btn.ghost:hover {
+		border-color: var(--text-muted);
+		background: var(--bg-elevated);
+	}
+
+	.grid {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	}
+
+	.grid article {
+		padding: 1.25rem 1.35rem;
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		background: var(--bg-elevated);
+	}
+
+	.grid h2 {
+		margin: 0 0 0.5rem;
+		font-size: 1.05rem;
+		font-weight: 600;
+	}
+
+	.grid p {
+		margin: 0;
+		font-size: 0.95rem;
+		color: var(--text-muted);
+	}
+</style>

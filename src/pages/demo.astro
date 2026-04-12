@@ -1,0 +1,185 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const demoUrl = import.meta.env.PUBLIC_DEMO_URL;
+const loomUrl =
+	import.meta.env.PUBLIC_LOOM_URL ?? 'https://www.loom.com/share/2bc3dce78042444fb3216ca076a16fbc';
+const loomEmbed = loomUrl.includes('/embed/')
+	? loomUrl
+	: loomUrl.replace(/loom\.com\/share\//, 'loom.com/embed/');
+---
+
+<Layout
+	title="Live demo — Tarka"
+	description="Open the hosted Tarka sandbox or watch the five-minute walkthrough: Decision API, inference context, OSINT path, and case explainability."
+>
+	<div class="page">
+		<Header />
+		<main>
+			<h1>Experience the demo</h1>
+			<p class="intro">
+				The live sandbox is the full lite stack (frontend, Decision API, integration ingress). Shared demos may
+				reset—treat data as ephemeral.
+			</p>
+
+			{
+				demoUrl ? (
+					<>
+						<div class="banner" role="status">
+							Shared demo environment — data may reset without notice.
+						</div>
+						<div class="frame-wrap">
+							<iframe
+								src={demoUrl}
+								title="Tarka live demo"
+								class="frame"
+								loading="lazy"
+								referrerpolicy="no-referrer-when-downgrade"
+							/>
+						</div>
+						<p class="alt">
+							<a href={demoUrl} target="_blank" rel="noopener noreferrer">
+								Open demo in a new tab
+							</a>{' '}
+							if embedding is blocked by your browser or the demo host.
+						</p>
+					</>
+				) : (
+					<div class="placeholder">
+						<p>
+							<strong>No public demo URL configured.</strong> Set <code>PUBLIC_DEMO_URL</code> in your
+							deployment environment to the HTTPS origin of your Tarka lite deployment (see{' '}
+							<code>deploy/README.md</code> in this project).
+						</p>
+						<p>
+							Until then, run Tarka locally with{' '}
+							<code>docker compose -f deploy/docker-compose.lite.yml up -d --build</code> from the{' '}
+							<a href="https://github.com/pamu512/tarka">canonical repository</a>.
+						</p>
+					</div>
+				)
+			}
+
+			<section class="video">
+				<h2>Five-minute walkthrough</h2>
+				<p class="muted">Sandbox flow, inference context, OSINT path, and case explainability.</p>
+				<div class="loom">
+					<iframe
+						src={loomEmbed}
+						title="Tarka walkthrough video"
+						allow="fullscreen"
+						style="border: none; width: 100%; height: 100%;"
+					/>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</div>
+</Layout>
+
+<style>
+	.page {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	main {
+		flex: 1;
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 2rem 1.25rem 4rem;
+		width: 100%;
+	}
+
+	h1 {
+		font-size: clamp(1.75rem, 4vw, 2.25rem);
+		margin: 0 0 0.75rem;
+	}
+
+	.intro {
+		color: var(--text-muted);
+		margin: 0 0 1.25rem;
+		max-width: 52ch;
+	}
+
+	.banner {
+		font-size: 0.85rem;
+		padding: 0.5rem 0.85rem;
+		border-radius: 8px;
+		background: rgba(251, 191, 36, 0.12);
+		border: 1px solid rgba(251, 191, 36, 0.35);
+		color: #fde68a;
+		margin-bottom: 1rem;
+	}
+
+	.frame-wrap {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 16 / 10;
+		max-height: min(72vh, 640px);
+		border-radius: var(--radius);
+		overflow: hidden;
+		border: 1px solid var(--border);
+		background: var(--bg-elevated);
+	}
+
+	.frame {
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+
+	.alt {
+		font-size: 0.9rem;
+		color: var(--text-muted);
+		margin-top: 0.75rem;
+	}
+
+	.placeholder {
+		padding: 1.25rem 1.35rem;
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		background: var(--bg-elevated);
+		margin-bottom: 2rem;
+	}
+
+	.placeholder p {
+		margin: 0 0 0.75rem;
+		color: var(--text-muted);
+	}
+
+	.video {
+		margin-top: 2.5rem;
+	}
+
+	.video h2 {
+		font-size: 1.15rem;
+		margin: 0 0 0.35rem;
+	}
+
+	.muted {
+		margin: 0 0 1rem;
+		font-size: 0.95rem;
+		color: var(--text-muted);
+	}
+
+	.loom {
+		position: relative;
+		padding-bottom: 62.5%;
+		height: 0;
+		border-radius: var(--radius);
+		overflow: hidden;
+		border: 1px solid var(--border);
+		background: #000;
+	}
+
+	.loom iframe {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>

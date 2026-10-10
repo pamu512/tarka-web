@@ -24,7 +24,7 @@ See upstream: [sandbox-five-minute.md](https://github.com/pamu512/tarka/blob/mas
    ```
 
 3. **TLS:** Put a reverse proxy in front (see `Caddyfile.example`). Point DNS `demo.yourdomain.com` at the server.
-4. **Firewall:** Allow `80`/`443` only; do not expose Postgres/Redis to the public internet (compose binds them for localhost by default—verify with `docker port`).
+4. **Firewall:** Allow `80`/`443` only; do not expose Postgres/Redis to the public internet (compose binds them for localhost by default. Verify with `docker port`).
 
 ## Hardening checklist
 
@@ -45,7 +45,7 @@ PUBLIC_DEMO_URL=https://demo.yourdomain.com
 PUBLIC_SITE_URL=https://www.yourdomain.com
 ```
 
-in Vercel/Netlify (or `.env` locally) for the Astro project—see the website root [`README.md`](../README.md).
+in Vercel/Netlify (or `.env` locally) for the Astro project. See the website root [`README.md`](../README.md).
 
 ## Prebuilt sandbox image (optional)
 

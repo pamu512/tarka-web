@@ -10,7 +10,7 @@ interface Props {
 
 const {
 	title,
-	description = 'Tarka — open-source, modular fraud detection. Prove every signal.',
+	description = 'Tarka: open-source, modular fraud detection. Prove every signal.',
 	ogImage = '/tarka-logo-lockup.png',
 	noIndex = false,
 } = Astro.props;
@@ -47,7 +47,7 @@ const jsonLd = {
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical.href} />
 		<meta property="og:image" content={absoluteOg} />
-		<meta property="og:image:alt" content="Tarka — Prove every signal." />
+		<meta property="og:image:alt" content="Tarka: Prove every signal." />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />

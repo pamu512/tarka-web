@@ -1,6 +1,6 @@
 # Tarka marketing site
 
-Static [Astro](https://astro.build/) **single-page** site for **Tarka** — overview, why Tarka, live demo embed, Loom walkthrough, and get-started snippets on one scrollable page, with anchor navigation. Links to the [canonical repo](https://github.com/pamu512/tarka). Old paths `/why`, `/demo`, and `/get-started` redirect to `/#why`, `/#demo`, and `/#get-started` on Netlify.
+Static [Astro](https://astro.build/) **single-page** site for **Tarka**: overview, why Tarka, live demo embed, Loom walkthrough, and get-started snippets on one scrollable page, with anchor navigation. Links to the [canonical repo](https://github.com/pamu512/tarka). Old paths `/why`, `/demo`, and `/get-started` redirect to `/#why`, `/#demo`, and `/#get-started` on Netlify.
 
 **Audience deep links:** open a section directly with a query string (hash is applied after load):
 
@@ -11,7 +11,7 @@ Static [Astro](https://astro.build/) **single-page** site for **Tarka** — over
 
 Example: `https://yoursite.netlify.app/?role=operations`
 
-**Essays:** [Medium @tarka](https://medium.com/@tarka) — linked from the site footer and hero.
+**Essays:** [Medium @tarka](https://medium.com/@tarka), linked from the site footer and hero.
 
 ## Develop
 
@@ -49,7 +49,7 @@ npm run preview
    - **Build command:** `npm run build` (already set in [`netlify.toml`](netlify.toml))
    - **Publish directory:** `dist`
 3. Under **Site configuration** → **Environment variables**, add (at minimum):
-   - `PUBLIC_SITE_URL` — your live site URL, e.g. `https://your-site.netlify.app` or your custom domain (no trailing slash).
+   - `PUBLIC_SITE_URL`: your live site URL, e.g. `https://your-site.netlify.app` or your custom domain (no trailing slash).
    - Optionally: `PUBLIC_DEMO_URL`, `PUBLIC_LOOM_URL`, `PUBLIC_PLAUSIBLE_DOMAIN` (see table above).
 4. Trigger a new deploy. Netlify runs `npm install` and `npm run build` on each push.
 

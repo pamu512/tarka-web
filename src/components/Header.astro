@@ -1,9 +1,9 @@
 ---
 const links = [
-	{ href: '#overview', label: 'Overview' },
-	{ href: '#choose-role', label: 'By role' },
-	{ href: '#demo', label: 'Demo' },
-	{ href: '#get-started', label: 'Build' },
+	{ href: '/#overview', label: 'Overview' },
+	{ href: '/#choose-role', label: 'By role' },
+	{ href: '/#demo', label: 'Demo' },
+	{ href: '/#get-started', label: 'Build' },
 ] as const;
 
 const github = 'https://github.com/pamu512/tarka';
@@ -11,13 +11,13 @@ const github = 'https://github.com/pamu512/tarka';
 
 <header class="header">
 	<div class="inner">
-		<a class="brand" href="#overview" aria-label="Tarka — home">
+		<a class="brand" href="/#overview" aria-label="Tarka home">
 			<span class="brand-pad">
 				<img
 					src="/tarka-logo-lockup.png"
 					width="220"
 					height="80"
-					alt="Tarka — Prove every signal."
+					alt="Tarka: Prove every signal."
 					class="brand-img"
 					loading="eager"
 					decoding="async"
@@ -51,6 +51,8 @@ const github = 'https://github.com/pamu512/tarka';
 		backdrop-filter: blur(12px);
 		background: rgba(12, 18, 34, 0.85);
 		border-bottom: 1px solid var(--border);
+		max-width: 100%;
+		min-width: 0;
 	}
 
 	.inner {
@@ -62,13 +64,15 @@ const github = 'https://github.com/pamu512/tarka';
 		justify-content: space-between;
 		gap: 1.5rem;
 		flex-wrap: wrap;
+		min-width: 0;
 	}
 
 	.brand {
 		display: flex;
 		align-items: center;
+		min-width: 0;
 		text-decoration: none;
-		color: inherit;
+		color: var(--bg);
 	}
 
 	.brand-pad {
@@ -95,6 +99,10 @@ const github = 'https://github.com/pamu512/tarka';
 		outline-offset: 3px;
 	}
 
+	.nav {
+		min-width: 0;
+	}
+
 	.nav ul {
 		list-style: none;
 		margin: 0;
@@ -102,10 +110,14 @@ const github = 'https://github.com/pamu512/tarka';
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		gap: 0.35rem 1rem;
+		gap: 0.35rem 0;
 	}
 
 	.nav a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		padding: 0 0.5rem;
 		color: var(--text-muted);
 		text-decoration: none;
 		font-weight: 500;

@@ -4,7 +4,18 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import AudiencePathCards from '../components/AudiencePathCards.astro';
 
-const demoUrl = import.meta.env.PUBLIC_DEMO_URL;
+function allowedHttps(value: unknown): string | undefined {
+	if (typeof value !== 'string') return undefined;
+	const trimmed = value.trim();
+	if (!trimmed) return undefined;
+	try {
+		return new URL(trimmed).protocol === 'https:' ? trimmed : undefined;
+	} catch {
+		return undefined;
+	}
+}
+
+const demoUrl = allowedHttps(import.meta.env.PUBLIC_DEMO_URL);
 const github = 'https://github.com/pamu512/tarka';
 const repo = github;
 const sandboxGuide = `${repo}/blob/master/docs/docs/guides/sandbox-five-minute.md`;
@@ -14,16 +25,16 @@ const saarthiPro = 'https://github.com/pamu512/Saarthi-pro';
 const saarthiCompare = `${repo}/blob/master/docs/docs/guides/saarthi-pro-vs-oss.md`;
 const investigationAgent = `${repo}/tree/master/services/investigation-agent`;
 const mediumBlog = 'https://medium.com/@tarka';
-const loomUrl =
-	import.meta.env.PUBLIC_LOOM_URL ?? 'https://www.loom.com/share/2bc3dce78042444fb3216ca076a16fbc';
+const loomFallback = 'https://www.loom.com/share/2bc3dce78042444fb3216ca076a16fbc';
+const loomUrl = allowedHttps(import.meta.env.PUBLIC_LOOM_URL) ?? loomFallback;
 const loomEmbed = loomUrl.includes('/embed/')
 	? loomUrl
 	: loomUrl.replace(/loom\.com\/share\//, 'loom.com/embed/');
 ---
 
 <Layout
-	title="Tarka — Prove every signal."
-	description="Open-source fraud detection for engineering, operations, and leadership: explainable decisions, modular stack, and controls you can own—without giving up the repo when you need to ship."
+	title="Tarka: Prove every signal."
+	description="Open-source fraud detection for engineering, operations, and leadership: explainable decisions, modular stack, and controls you can own, without giving up the repo when you need to ship."
 >
 	<div class="page">
 		<a class="skip-link" href="#main">Skip to main content</a>
@@ -33,7 +44,7 @@ const loomEmbed = loomUrl.includes('/embed/')
 				<p class="eyebrow">Open-source fraud platform</p>
 				<h1 id="hero-title">Prove every signal.</h1>
 				<p class="lede">
-					Modular fraud detection: real-time decisions, explainable outcomes, and investigations—without vendor
+					Modular fraud detection: real-time decisions, explainable outcomes, and investigations, without vendor
 					lock-in.
 				</p>
 				<p class="hero-meta">
@@ -64,11 +75,11 @@ const loomEmbed = loomUrl.includes('/embed/')
 			<section id="orchestration" class="section orch" aria-labelledby="orch-heading">
 				<h2 id="orch-heading">Orchestration &amp; investigation copilot</h2>
 				<p class="orch-lead">
-					Signals feed decisions; decisions land in cases; integrations connect your providers—one loop instead
+					Signals feed decisions; decisions land in cases; integrations connect your providers: one loop instead
 					of many consoles.
 				</p>
 				<p class="orch-lead">
-					<strong>Saarthi</strong> is the investigation copilot (LLM tool-use) for faster case work—with
+					<strong>Saarthi</strong> is the investigation copilot (LLM tool-use) for case work, with
 					reviewability in mind.
 				</p>
 				<div class="orch-split">
@@ -76,7 +87,7 @@ const loomEmbed = loomUrl.includes('/embed/')
 						<h3>Open source (in Tarka)</h3>
 						<p>
 							The OSS copilot ships in the main repo as{' '}
-							<a href={investigationAgent}>services/investigation-agent</a>—best when you want the full Tarka
+							<a href={investigationAgent}>services/investigation-agent</a>, best when you want the full Tarka
 							stack, self-hosted ops, and code you can audit end-to-end.
 						</p>
 					</div>
@@ -84,16 +95,16 @@ const loomEmbed = loomUrl.includes('/embed/')
 						<h3>Saarthi Pro (commercial)</h3>
 						<p>
 							<a href={saarthiPro}>Saarthi Pro</a> is the standalone, procurement-friendly SKU when you need a
-							focused investigation copilot with commercial terms (e.g. SLAs, roadmap expectations) separate
+							focused investigation copilot with commercial terms, separate
 							from running the entire OSS platform yourself.
 						</p>
 						<p class="orch-fine">
-							<a href={saarthiCompare}>Saarthi Pro vs OSS summary</a> — buyer/PMO framing for which path fits.
+							<a href={saarthiCompare}>Saarthi Pro vs OSS summary</a>: buyer/PMO framing for which path fits.
 						</p>
 					</div>
 				</div>
 				<p class="orch-foot">
-					Tarka is the <strong>fraud platform</strong>; Saarthi names the <strong>copilot</strong> lane—separate
+					Tarka is the <strong>fraud platform</strong>; Saarthi names the <strong>copilot</strong> lane, separate
 					from the core decision engine.
 				</p>
 			</section>
@@ -102,23 +113,23 @@ const loomEmbed = loomUrl.includes('/embed/')
 				<h2 id="aud-dev">For developers</h2>
 				<p class="audience-lead">
 					Ship scoring and case flows behind a stable surface area: evaluate, ingest, and extend with modules
-					you actually need—not a monolithic black box.
+					you actually need, not a monolithic black box.
 				</p>
 				<ul class="audience-list">
 					<li>
-						<strong>Integrate, don’t rip and replace</strong> — REST-shaped Decision API and typed clients so your
+						<strong>Integrate, don’t rip and replace</strong>: REST-shaped Decision API and typed clients so your
 						services call one hub for decisions and context.
 					</li>
 					<li>
-						<strong>Iterate locally</strong> — CLI installer, Docker Compose paths, and CI-visible quality gates
+						<strong>Iterate locally</strong>: CLI installer, Docker Compose paths, and CI-visible quality gates
 						in the open repository.
 					</li>
 					<li>
-						<strong>See the contract</strong> — OpenAPI and SDKs track the same payloads your UI and automation
+						<strong>See the contract</strong>: OpenAPI and SDKs track the same payloads your UI and automation
 						use.
 					</li>
 					<li>
-						<strong>Wire the copilot where you want it</strong> — Investigation agent code lives under{' '}
+						<strong>Wire the copilot where you want it</strong>: Investigation agent code lives under{' '}
 						<a href={investigationAgent}>services/investigation-agent</a>; product story for OSS vs{' '}
 						<a href={saarthiPro}>Saarthi Pro</a> is <a href="#orchestration">spelled out here</a>.
 					</li>
@@ -139,30 +150,30 @@ const loomEmbed = loomUrl.includes('/embed/')
 			>
 				<h2 id="aud-ops">For fraud &amp; risk operations</h2>
 				<p class="audience-lead">
-					Give analysts explainable decisions and structured case work—without waiting on a vendor roadmap for
+					Give analysts explainable decisions and structured case work, without waiting on a vendor roadmap for
 					every rule change or integration.
 				</p>
 				<ul class="audience-list">
 					<li>
-						<strong>Show your work</strong> — Decisions carry inference context and evidence your team can defend
+						<strong>Show your work</strong>: Decisions carry inference context and evidence your team can defend
 						in reviews and handoffs.
 					</li>
 					<li>
-						<strong>Investigations first</strong> — Case-oriented flows, not only batch scores in a spreadsheet
+						<strong>Investigations first</strong>: Case-oriented flows, not only batch scores in a spreadsheet
 						export.
 					</li>
 					<li>
-						<strong>Integrate the real world</strong> — KYC, sanctions, device, CRM, and dispute paths through
+						<strong>Integrate the real world</strong>: KYC, sanctions, device, CRM, and dispute paths through
 						one integration story (exact adapters depend on what you enable).
 					</li>
 					<li>
-						<strong>Copilot-assisted investigations</strong> — Saarthi (OSS in-repo or{' '}
+						<strong>Copilot-assisted investigations</strong>: Saarthi (OSS in-repo or{' '}
 						<a href={saarthiPro}>Saarthi Pro</a> when procurement needs a commercial copilot SKU) supports analyst
 						work on cases; pair with explainable decisions so AI stays reviewable.
 					</li>
 					<li>
-						<strong>Own the operating reality</strong> — Self-hosted means <em>you</em> own change windows,
-						capacity, and runbooks—plan staffing accordingly.
+						<strong>Own the operating reality</strong>: Self-hosted means <em>you</em> own change windows,
+						capacity, and runbooks. Plan staffing accordingly.
 					</li>
 				</ul>
 				<p class="audience-cta">
@@ -189,26 +200,26 @@ const loomEmbed = loomUrl.includes('/embed/')
 				</p>
 				<ul class="audience-list">
 					<li>
-						<strong>Escape lock-in on the core</strong> — Your team can audit, extend, and ship controls without
+						<strong>Escape lock-in on the core</strong>: Your team can audit, extend, and ship controls without
 						being captive to a single vendor’s release train for the risk engine.
 					</li>
 					<li>
-						<strong>Consolidate where it counts</strong> — Rules, ML, graph, and cases behind one decision
-						surface—fewer brittle handoffs between point tools.
+						<strong>Consolidate where it counts</strong>: Rules, ML, graph, and cases behind one decision
+						surface, fewer brittle handoffs between point tools.
 					</li>
 					<li>
-						<strong>Align risk and engineering</strong> — Shared artifacts (contracts, traces, case exports)
+						<strong>Align risk and engineering</strong>: Shared artifacts (contracts, traces, case exports)
 						that both sides can examine under pressure.
 					</li>
 					<li>
-						<strong>Compliance-oriented posture</strong> — Traceability and documented dependencies are treated
+						<strong>Documented dependencies</strong>: traceability is treated
 						as first-class in the OSS program (not legal advice; map to your regime).
 					</li>
 				</ul>
 				<div class="audience-note">
 					<p>
 						<strong>Total cost honesty:</strong> OSS avoids traditional license line items; you still budget for
-						people, cloud or data-center capacity, and integration—not a fake “free lunch.”
+						people, cloud or data-center capacity, and integration, not a fake “free lunch.”
 					</p>
 				</div>
 				<p class="audience-cta">
@@ -226,23 +237,22 @@ const loomEmbed = loomUrl.includes('/embed/')
 				<h2 id="aud-inv">For investors &amp; strategic partners</h2>
 				<p class="audience-lead">
 					Tarka is open infrastructure for a regulated, high-stakes workflow: every signal is a hypothesis; every
-					decision should be provable. Distribution starts with developers and GitHub—not a gated sales deck.
+					decision should be provable. Distribution starts with developers and GitHub, not a gated sales deck.
 				</p>
 				<ul class="audience-list">
 					<li>
-						<strong>Wedge</strong> — Modular fraud stack (rules, ML, graph, cases, integrations) behind a
-						normalized API—teams adopt components before committing to a full platform swap.
+						<strong>Wedge</strong>: Modular fraud stack (rules, ML, graph, cases, integrations) behind a
+						normalized API. Teams adopt components before committing to a full platform swap.
 					</li>
 					<li>
-						<strong>Thesis fit</strong> — Explainability and operator trust move budget in fraud; OSS lowers
-						adoption friction and surfaces serious evaluators early.
+						<strong>Thesis fit</strong>: Explainability and operator trust. The repository is public.
 					</li>
 					<li>
-						<strong>What to diligence</strong> — Public CI/security posture, release cadence, module depth, and
+						<strong>What to diligence</strong>: Public CI/security posture, release cadence, module depth, and
 						ecosystem hooks (commercial adjacencies can sit beside OSS without confusion if messaged cleanly).
 					</li>
 					<li>
-						<strong>Adjacent SKU</strong> —{' '}
+						<strong>Adjacent SKU</strong>:{' '}
 						<a href={saarthiPro}>Saarthi Pro</a> is the named commercial investigation copilot alongside OSS
 						Tarka; see <a href={saarthiCompare}>OSS vs Pro</a> for how the lines are drawn.
 					</li>
@@ -250,7 +260,7 @@ const loomEmbed = loomUrl.includes('/embed/')
 				<div class="audience-note">
 					<p>
 						<strong>Early-stage candor:</strong> Traction metrics belong in conversation and materials suited to
-						your stage—this site is intentionally product- and repo-forward, not a substitute for a data room.
+						your stage. This site is intentionally product- and repo-forward, not a substitute for a data room.
 					</p>
 				</div>
 				<p class="audience-cta">
@@ -265,7 +275,7 @@ const loomEmbed = loomUrl.includes('/embed/')
 			<section id="why" class="section why" aria-labelledby="why-heading">
 				<h2 id="why-heading">Why Tarka</h2>
 				<p class="intro">
-					<em>Tarka</em> (Sanskrit तर्क) names disciplined hypothesis testing—fitting for a platform where every
+					<em>Tarka</em> (Sanskrit तर्क) names disciplined hypothesis testing, fitting for a platform where every
 					signal is a hypothesis and every decision should be provable.
 				</p>
 
@@ -273,24 +283,23 @@ const loomEmbed = loomUrl.includes('/embed/')
 					<h3>Choose Tarka when you need to</h3>
 					<ul>
 						<li>
-							<strong>Own and evolve controls</strong> — fraud logic your team can audit, extend, and ship
+							<strong>Own and evolve controls</strong>: fraud logic your team can audit, extend, and ship
 							without waiting on a black-box vendor.
 						</li>
 						<li>
-							<strong>Unify rules, ML, and graph</strong> — one stack for scoring, entity insight, and case
-							work—behind a normalized Decision API and typed clients.
+							<strong>Unify rules, ML, and graph</strong>: one stack for scoring, entity insight, and case
+							work, behind a normalized Decision API and typed clients.
 						</li>
 						<li>
-							<strong>Support investigations</strong> — case workflows and explainability surfaces built for
+							<strong>Support investigations</strong>: case workflows and explainability surfaces built for
 							analysts, not only batch scores.
 						</li>
 						<li>
-							<strong>Integrate widely</strong> — connect KYC, sanctions, device, CRM, or dispute tools through
+							<strong>Integrate widely</strong>: connect KYC, sanctions, device, CRM, or dispute tools through
 							the integration layer instead of one-off scripts.
 						</li>
 						<li>
-							<strong>Meet compliance expectations</strong> — traceability, security workflows, and
-							documented dependencies as first-class concerns in the OSS repo.
+							<strong>Traceability, security workflows, and documented dependencies</strong>: first-class concerns in the OSS repo.
 						</li>
 					</ul>
 				</div>
@@ -309,22 +318,25 @@ const loomEmbed = loomUrl.includes('/embed/')
 				<h2 id="demo-heading">Experience the demo</h2>
 				<p class="intro">
 					The live sandbox is the full lite stack (frontend, Decision API, integration ingress). Shared demos may
-					reset—treat data as ephemeral.
+					reset. Treat data as ephemeral.
 				</p>
 
 				{
 					demoUrl ? (
 						<>
 							<div class="banner" role="status">
-								Shared demo environment — data may reset without notice.
+								Shared demo environment: data may reset without notice.
 							</div>
+							<p class="muted" id="demo-loading">The shared demo loads in the frame below.</p>
 							<div class="frame-wrap">
 								<iframe
+									id="demo-frame"
 									src={demoUrl}
 									title="Tarka live demo"
 									class="frame"
 									loading="lazy"
 									referrerpolicy="no-referrer-when-downgrade"
+									onload="var n=document.getElementById('demo-loading');if(n)n.hidden=true"
 								/>
 							</div>
 							<p class="alt">
@@ -351,16 +363,23 @@ const loomEmbed = loomUrl.includes('/embed/')
 				}
 
 				<div class="video">
-					<h3>Five-minute walkthrough</h3>
+					<h3>Walkthrough</h3>
 					<p class="muted">Sandbox flow, inference context, OSINT path, and case explainability.</p>
+					<p class="muted" id="loom-loading">The walkthrough loads in the frame below.</p>
 					<div class="loom">
 						<iframe
+							id="loom-frame"
 							src={loomEmbed}
 							title="Tarka walkthrough video"
 							allow="fullscreen"
 							style="border: none; width: 100%; height: 100%;"
+							onload="var n=document.getElementById('loom-loading');if(n)n.hidden=true"
 						/>
 					</div>
+					<p class="alt">
+						<a href={loomUrl} target="_blank" rel="noopener noreferrer">Open the walkthrough on Loom</a> if the
+						video does not appear.
+					</p>
 				</div>
 			</section>
 
@@ -402,8 +421,8 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 					<h3>4. GitHub Codespaces</h3>
 					<p>
 						Open a cloud dev environment from the repo, then run the same Compose command.{' '}
-						<a href={codespaces}>Create a Codespace</a>
-						— ports <code>3000</code>, <code>8000</code>, <code>8002</code>, <code>8003</code> are forwarded per
+						<a href={codespaces}>Create a Codespace</a>.
+						Ports <code>3000</code>, <code>8000</code>, <code>8002</code>, <code>8003</code> are forwarded per
 						the devcontainer.
 					</p>
 				</div>
@@ -415,7 +434,8 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 	<script is:inline>
 		(function () {
 			var params = new URLSearchParams(window.location.search);
-			var r = params.get('role') || params.get('audience');
+			var raw = params.get('role') || params.get('audience') || '';
+			var r = raw.trim().toLowerCase();
 			var map = {
 				developers: 'audience-developers',
 				dev: 'audience-developers',
@@ -435,8 +455,13 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 			requestAnimationFrame(function () {
 				var el = document.getElementById(id);
 				if (!el) return;
-				el.focus({ preventScroll: true });
-				el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				try {
+					el.focus({ preventScroll: true });
+				} catch (err) {
+					el.focus();
+				}
+				var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+				el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
 				try {
 					var u = new URL(window.location.href);
 					u.searchParams.delete('role');
@@ -455,6 +480,7 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
+		max-width: 100%;
 	}
 
 	main {
@@ -463,22 +489,37 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 		margin: 0 auto;
 		padding: 2.5rem 1.25rem 4rem;
 		width: 100%;
+		min-width: 0;
 	}
 
 	.skip-link {
 		position: absolute;
-		left: -9999px;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	.skip-link:focus {
+		width: auto;
+		height: auto;
+		margin: 0;
+		overflow: visible;
+		clip: auto;
+		white-space: normal;
+		left: 1rem;
+		top: 0.5rem;
 		z-index: 100;
-		padding: 0.5rem 1rem;
+		min-height: 44px;
+		padding: 0.65rem 1rem;
 		background: var(--accent);
 		color: var(--bg);
 		font-weight: 600;
 		border-radius: 0 0 8px 0;
-	}
-
-	.skip-link:focus {
-		left: 1rem;
-		top: 0.5rem;
 		outline: 2px solid var(--accent-hover);
 		outline-offset: 2px;
 	}
@@ -486,6 +527,7 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 	.hero {
 		max-width: 44rem;
 		margin-bottom: 2.5rem;
+		scroll-margin-top: 10rem;
 	}
 
 	.eyebrow {
@@ -535,6 +577,7 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		min-height: 44px;
 		padding: 0.65rem 1.25rem;
 		border-radius: var(--radius);
 		font-weight: 600;
@@ -570,7 +613,7 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 
 	.orch {
 		margin-bottom: 4rem;
-		scroll-margin-top: 5rem;
+		scroll-margin-top: 10rem;
 		padding: 1.5rem 1.5rem 1.65rem;
 		border-radius: var(--radius);
 		border: 1px solid var(--border);
@@ -597,7 +640,7 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 	.orch-split {
 		display: grid;
 		gap: 1rem;
-		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
 		margin: 1.25rem 0 1rem;
 	}
 
@@ -644,7 +687,7 @@ docker compose -f deploy/docker-compose.lite.yml up -d --build</code></pre>
 
 	.section {
 		margin-bottom: 4rem;
-		scroll-margin-top: 5rem;
+		scroll-margin-top: 10rem;
 	}
 
 	.section h2 {

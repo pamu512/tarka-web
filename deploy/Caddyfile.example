@@ -11,7 +11,7 @@ demo.example.com {
 	encode gzip zstd
 
 	# Rate limiting: use a CDN/WAF (e.g. Cloudflare) or build Caddy with
-	# github.com/mholt/caddy-ratelimit — stock Caddy has no built-in limiter.
+	# github.com/mholt/caddy-ratelimit. Stock Caddy has no built-in limiter.
 
 	# Main UI
 	handle / {
@@ -27,7 +27,7 @@ demo.example.com {
 		reverse_proxy 127.0.0.1:8000
 	}
 
-	# Integration ingress (OSINT) — path prefix depends on frontend config
+	# Integration ingress (OSINT). Path prefix depends on frontend config.
 	handle /integration/* {
 		reverse_proxy 127.0.0.1:8003
 	}

@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Page not found — Tarka" description="This page does not exist." noIndex>
+<Layout title="Page not found: Tarka" description="This page does not exist." noIndex>
 	<div class="page">
 		<Header />
 		<main>
@@ -20,6 +20,7 @@ import Footer from '../components/Footer.astro';
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
+		max-width: 100%;
 	}
 
 	main {
@@ -28,6 +29,7 @@ import Footer from '../components/Footer.astro';
 		margin: 0 auto;
 		padding: 3rem 1.25rem;
 		width: 100%;
+		min-width: 0;
 	}
 
 	h1 {

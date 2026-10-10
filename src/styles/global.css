@@ -52,6 +52,11 @@ a:focus-visible {
 	}
 }
 
+img {
+	max-width: 100%;
+	height: auto;
+}
+
 code {
 	font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
 	font-size: 0.9em;
@@ -59,10 +64,12 @@ code {
 	padding: 0.15em 0.45em;
 	border-radius: 6px;
 	border: 1px solid var(--border);
+	overflow-wrap: anywhere;
 }
 
 pre {
 	overflow-x: auto;
+	max-width: 100%;
 	padding: 1rem 1.25rem;
 	border-radius: var(--radius);
 	background: var(--bg-elevated);
@@ -75,6 +82,8 @@ pre code {
 	padding: 0;
 	border: none;
 	background: none;
+	overflow-wrap: normal;
+	white-space: pre;
 }
 
 .sr-only {
